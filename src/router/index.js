@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import seller from 'components/seller/seller';
+import goods from 'components/goods/goods';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/seller',
-      component: seller
+      path: '/goods',
+      component: goods
     }
   ]
 });

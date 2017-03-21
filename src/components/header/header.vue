@@ -15,54 +15,49 @@
           <span class="support-content">{{seller.supports[0].description}}</span>
         </div>
       </div>
-      <div v-if="seller.supports" class="btn" v-show="detailShowFlag" @click="detailShow()">
+      <div v-if="seller.supports" class="btn"  @click="detailShow()">
         <span class="privilege-num">{{seller.supports.length}}个</span>
         <i class="icon-arrow_right"></i>
       </div>
     </div>
+    <!--公告-->
     <div class="bulletin">
       <i class="bulletin-icon"></i>
       <div class="bulletin-content">{{seller.bulletin}}</div>
     </div>
-    <div class="detail clear-fix">
+    <!--弹出详情页-->
+    <div v-show="detailShowFlag" class="detail clear-fix">
       <div class="detail-wrapper">
         <div class="detail-main">
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
+          <div class="detail-title">{{seller.name}}</div>
+          <v-star class="detail-star" :size="48" :score="seller.score"></v-star>
+          <!--详情页小标题-->
+          <div class="detail-info">
+            <div class="detail-info-line"></div>
+            <div class="detail-info-title">优惠信息</div>
+            <div class="detail-info-line"></div>
+          </div>
+          <!--详情页的优惠信息-->
+          <div class="privilege-info">
+            <ul>
+              <li class="privilege-list" v-if="seller.supports" v-for="(item,index) in seller.supports">
+                <span class="item" :class="privilege[seller.supports[index].type]"></span>
+                <span class="item-2" :class="">{{seller.supports[index].description}}</span>
+              </li>
+            </ul>
+          </div>
+          <!--详情页小标题-->
+          <div class="detail-info">
+            <div class="detail-info-line"></div>
+            <div class="detail-info-title">商家公告</div>
+            <div class="detail-info-line"></div>
+          </div>
+          <!--弹出层的公告内容-->
+          <div class="bulletin-info">
+            <p class="bulletin-text">
+              {{seller.bulletin}}
+            </p>
+          </div>
         </div>
       </div>
       <div class="detail-footer">
@@ -72,6 +67,9 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+
+  import star from '../star/star';
+
   export default{
     props: {
       seller: {
@@ -90,6 +88,9 @@
     },
     created(){
         this.privilege = ['decrease','discount','guarantee','invoice','special'];
+    },
+    components:{
+        'v-star':star
     }
   };
 </script>
@@ -99,7 +100,6 @@
   .header {
     background: #ccc;
     color: #fff;
-
     .avatar-wrap {
       position: relative;
       font-size: 0;
@@ -115,7 +115,6 @@
         margin-left: 16px;
         height: 64px;
         overflow: hidden;
-
         .content-title {
           font-size: 16px;
           font-weight: bold;
@@ -139,20 +138,21 @@
             padding:4px 0 5px 0;
         }
         .support{
+          font-size: 0;
+          height:16px;
           padding:5px 0 2px 0;
-          display: -webkit-flex;
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
+          line-height: 16px;
           .support-icon{
             display: inline-block;
             width:12px;
             height:12px;
           }
           .support-content{
+              display: inline-block;
               font-size: 10px;
               font-weight: 200;
-              margin: auto 0 auto 4px;
+              margin: 0 0 0 4px;
+              vertical-align: top;
           }
           .decrease{
             @include brand-img(decrease_1,12px,12px);
@@ -225,9 +225,81 @@
       overflow: auto;
       z-index:100;
       .detail-wrapper{
+        width: 100%;
         min-height:100%;
         .detail-main{
           padding-bottom: 64px;
+          .detail-title{
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: rgb(255, 255, 255);
+            margin:64px auto 16px auto;
+          }
+          .detail-star{
+            width:100%;
+            text-align: center;
+            margin: 16px auto 28px auto;
+          }
+          .detail-info{
+            display: flex;
+            width:80%;
+            margin:28px auto 12px auto;
+            .detail-info-line{
+              flex:1;
+              position: relative;
+              top:6px;
+              border-top:1px solid rgba(255,255,255,0.2);
+            }
+            .detail-info-title{
+              padding:0 12px;
+            }
+          }
+          .privilege-info{
+            .privilege-list{
+              width:80%;
+              height:16px;
+              line-height: 16px;
+              margin:12px auto;
+              font-size: 0;
+            }
+            .item{
+              display: inline-block;
+              width:16px;
+              height:16px;
+              margin-left: 12px;
+            }
+            .item-2{
+              display: inline-block;
+              font-size: 12px;
+              margin-left: 6px;
+              vertical-align: top;
+            }
+            .decrease{
+              @include brand-img(decrease_1,16px,16px);
+            }
+            .discount{
+              @include brand-img(discount_1,16px,16px);
+            }
+            .guarantee{
+              @include brand-img(guarantee_1,16px,16px);
+            }
+            .invoice{
+              @include brand-img(invoice_1,16px,16px);
+            }
+            .special{
+              @include brand-img(special_1,16px,16px);
+            }
+          }
+          .bulletin-info{
+            .bulletin-text{
+              width:80%;
+              margin:24px auto;
+              font-size: 12px;
+              font-weight: 200;
+              line-height: 24px;
+            }
+          }
         }
       }
       .detail-footer{
