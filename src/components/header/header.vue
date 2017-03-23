@@ -15,15 +15,16 @@
           <span class="support-content">{{seller.supports[0].description}}</span>
         </div>
       </div>
-      <div v-if="seller.supports" class="btn"  @click="detailShow()">
+      <div v-if="seller.supports" class="btn" @click="detailShow()">
         <span class="privilege-num">{{seller.supports.length}}个</span>
         <i class="icon-arrow_right"></i>
       </div>
     </div>
     <!--公告-->
     <div class="bulletin">
-      <i class="bulletin-icon"></i>
-      <div class="bulletin-content">{{seller.bulletin}}</div>
+      <span class="bulletin-icon"></span>
+      <span class="bulletin-content">{{seller.bulletin}}</span>
+      <i class="bulletin-go"></i>
     </div>
     <!--弹出详情页-->
     <div v-show="detailShowFlag" class="detail clear-fix">
@@ -61,7 +62,9 @@
         </div>
       </div>
       <div class="detail-footer">
-        <i class="detail-close"></i>
+        <div class="detail-close" @click="detailHide">
+          <i class="icon-close"></i>
+        </div>
       </div>
     </div>
   </div>
@@ -78,19 +81,22 @@
     },
     data(){
       return {
-          detailShowFlag:false
+        detailShowFlag: false
       }
     },
-    methods:{
-      detailShow:function(){
+    methods: {
+      detailShow(){
         this.detailShowFlag = true;
+      },
+      detailHide(){
+        this.detailShowFlag = false;
       }
     },
     created(){
-        this.privilege = ['decrease','discount','guarantee','invoice','special'];
+      this.privilege = ['decrease', 'discount', 'guarantee', 'invoice', 'special'];
     },
-    components:{
-        'v-star':star
+    components: {
+      'v-star': star
     }
   };
 </script>
@@ -105,8 +111,8 @@
       font-size: 0;
       .head {
         display: inline-block;
-        margin:24px 0 18px 24px;
-        img{
+        margin: 24px 0 18px 24px;
+        img {
           border-radius: 4px;
         }
       }
@@ -119,182 +125,185 @@
           font-size: 16px;
           font-weight: bold;
           line-height: 16px;
-          padding:2px 0 4px 0;
+          padding: 2px 0 4px 0;
           .brand {
             width: 30px;
             height: 16px;
             display: inline-block;
-            @include brand-img(brand,30px,18px);
+            @include brand-img(brand, 30px, 18px);
           }
-          .title{
+          .title {
             margin-left: 6px;
             vertical-align: top;
           }
         }
-        .description{
-            font-size: 12px;
-            font-weight: 200;
-            line-height: 12px;
-            padding:4px 0 5px 0;
+        .description {
+          font-size: 12px;
+          font-weight: 200;
+          line-height: 12px;
+          padding: 4px 0 5px 0;
         }
-        .support{
+        .support {
           font-size: 0;
-          height:16px;
-          padding:5px 0 2px 0;
+          height: 16px;
+          padding: 5px 0 2px 0;
           line-height: 16px;
-          .support-icon{
+          .support-icon {
             display: inline-block;
-            width:12px;
-            height:12px;
+            width: 12px;
+            height: 12px;
           }
-          .support-content{
-              display: inline-block;
-              font-size: 10px;
-              font-weight: 200;
-              margin: 0 0 0 4px;
-              vertical-align: top;
+          .support-content {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 200;
+            margin: 0 0 0 4px;
+            vertical-align: top;
           }
-          .decrease{
-            @include brand-img(decrease_1,12px,12px);
+          .decrease {
+            @include brand-img(decrease_1, 12px, 12px);
           }
-          .discount{
-            @include brand-img(discount_1,12px,12px);
+          .discount {
+            @include brand-img(discount_1, 12px, 12px);
           }
-          .guarantee{
-            @include brand-img(guarantee_1,12px,12px);
+          .guarantee {
+            @include brand-img(guarantee_1, 12px, 12px);
           }
-          .invoice{
-            @include brand-img(invoice_1,12px,12px);
+          .invoice {
+            @include brand-img(invoice_1, 12px, 12px);
           }
-          .special{
-            @include brand-img(special_1,12px,12px);
+          .special {
+            @include brand-img(special_1, 12px, 12px);
           }
 
         }
       }
-      .btn{
-        height:12px;
-        -webkit-border-radius:10px;
-        -moz-border-radius:10px;
-        border-radius:10px;
+      .btn {
+        height: 12px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
         display: inline-block;
-        background: rgba(0,0,0,0.2);
-        padding:7px 8px 7px 8px;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 7px 8px 7px 8px;
         position: absolute;
-        right:12px;
-        bottom:16px;
-        .privilege-num{
+        right: 12px;
+        bottom: 16px;
+        .privilege-num {
           display: inline-block;
-          height:12px;
+          height: 12px;
           line-height: 12px;
           font-weight: 200;
           font-size: 10px;
         }
       }
     }
-    .bulletin{
-      width:100%;
-      height:28px;
+    .bulletin {
+      clear: both;
+      height: 28px;
       line-height: 28px;
-      background: rgba(7,17,27,0.2);
-      .bulletin-icon{
+      padding: 0 22px 0 12px;
+      background: rgba(7, 17, 27, 0.2);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      .bulletin-icon {
+        display: inline-block;
         width: 22px;
-        height:12px;
-        display: inline-block;
-        @include brand-img(bulletin,22px,12px);
-        margin-left: 10px;
-        padding-top: 7px;
+        height: 12px;
+        @include brand-img(bulletin, 22px, 12px);
       }
-      .bulletin-content{
-        width:310px;
+      .bulletin-content {
         padding: 0 0 0 4px;
-        display: inline-block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow:ellipsis;
         font-size: 10px;
       }
+      .bulletin-go {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+      }
     }
-    .detail{
+    .detail {
       width: 100%;
-      height:100%;
-      background: rgba(0,0,0,0.8);
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
       position: fixed;
-      left:0;
-      top:0;
+      left: 0;
+      top: 0;
       overflow: auto;
-      z-index:100;
-      .detail-wrapper{
+      z-index: 100;
+      .detail-wrapper {
         width: 100%;
-        min-height:100%;
-        .detail-main{
-          padding-bottom: 64px;
-          .detail-title{
+        min-height: 100%;
+        overflow: hidden;
+        .detail-main {
+          margin-bottom: 64px;
+          .detail-title {
             text-align: center;
             font-size: 16px;
             font-weight: 700;
             color: rgb(255, 255, 255);
-            margin:64px auto 16px auto;
+            margin: 64px auto 16px auto;
           }
-          .detail-star{
-            width:100%;
+          .detail-star {
+            width: 100%;
             text-align: center;
             margin: 16px auto 28px auto;
           }
-          .detail-info{
+          .detail-info {
             display: flex;
-            width:80%;
-            margin:28px auto 12px auto;
-            .detail-info-line{
-              flex:1;
+            width: 80%;
+            margin: 28px auto 12px auto;
+            .detail-info-line {
+              flex: 1;
               position: relative;
-              top:6px;
-              border-top:1px solid rgba(255,255,255,0.2);
+              top: 6px;
+              border-top: 1px solid rgba(255, 255, 255, 0.2);
             }
-            .detail-info-title{
-              padding:0 12px;
+            .detail-info-title {
+              padding: 0 12px;
             }
           }
-          .privilege-info{
-            .privilege-list{
-              width:80%;
-              height:16px;
+          .privilege-info {
+            .privilege-list {
+              width: 80%;
+              height: 16px;
               line-height: 16px;
-              margin:12px auto;
+              margin: 12px auto;
               font-size: 0;
             }
-            .item{
+            .item {
               display: inline-block;
-              width:16px;
-              height:16px;
+              width: 16px;
+              height: 16px;
               margin-left: 12px;
             }
-            .item-2{
+            .item-2 {
               display: inline-block;
               font-size: 12px;
               margin-left: 6px;
               vertical-align: top;
             }
-            .decrease{
-              @include brand-img(decrease_1,16px,16px);
+            .decrease {
+              @include brand-img(decrease_1, 16px, 16px);
             }
-            .discount{
-              @include brand-img(discount_1,16px,16px);
+            .discount {
+              @include brand-img(discount_1, 16px, 16px);
             }
-            .guarantee{
-              @include brand-img(guarantee_1,16px,16px);
+            .guarantee {
+              @include brand-img(guarantee_1, 16px, 16px);
             }
-            .invoice{
-              @include brand-img(invoice_1,16px,16px);
+            .invoice {
+              @include brand-img(invoice_1, 16px, 16px);
             }
-            .special{
-              @include brand-img(special_1,16px,16px);
+            .special {
+              @include brand-img(special_1, 16px, 16px);
             }
           }
-          .bulletin-info{
-            .bulletin-text{
-              width:80%;
-              margin:24px auto;
+          .bulletin-info {
+            .bulletin-text {
+              width: 80%;
+              margin: 24px auto;
               font-size: 12px;
               font-weight: 200;
               line-height: 24px;
@@ -302,17 +311,19 @@
           }
         }
       }
-      .detail-footer{
+      .detail-footer {
         position: relative;
-        height:64px;
+        height: 64px;
         margin-top: -64px;
         clear: both;
-        background: red;
-        .detail-close{
+        text-align: center;
+        .detail-close {
           display: inline-block;
           width: 32px;
           height: 32px;
+          padding:3px;
           font-size: 32px;
+          color: rgba(255, 255, 255, 0.5);
         }
       }
     }

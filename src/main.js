@@ -5,8 +5,6 @@ import App from './App';
 import router from './router';
 import vueres from 'vue-resource';
 
-// import 'common/sass/index.scss';
-
 Vue.config.productionTip = false;
 
 Vue.use(vueres);

@@ -34,24 +34,24 @@ apiRouter.get('/seller',function(req,res){
         errno:0,
         data:seller
     })
-})
+});
 
 apiRouter.get('/goods',function(req,res){
     res.json({
         errno:0,
         data:goods
     })
-})
+});
 
 apiRouter.get('/ratings',function(req,res){
     res.json({
         errno:0,
         data:ratings
     })
-})
+});
 
-app.use('/api',apiRouter)
-var compiler = webpack(webpackConfig)
+app.use('/api',apiRouter);
+var compiler = webpack(webpackConfig);
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,

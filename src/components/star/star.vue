@@ -54,7 +54,6 @@
 <style rel="stylesheet/scss" lang="scss">
 
   @import '../../common/sass/index.scss';
-  @import '../../common/sass/mixin.scss';
 
   .star{
     display: inline-block;
