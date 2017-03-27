@@ -6,10 +6,10 @@
 <template>
   <div class="car-control">
     <transition name="fade">
-      <div class="decrease" @click="decrease($event)" v-show="food.count > 0"><i class="icon-remove_circle_outline"></i></div>
+      <div class="decrease" @click.stop.prevent="decrease($event)" v-show="food.count > 0"><i class="icon-remove_circle_outline"></i></div>
     </transition>
     <div class="count" v-show="food.count > 0">{{food.count}}</div>
-    <div class="add" @click="addGoods($event)"><i class="icon-add_circle"></i></div>
+    <div class="add" @click.stop.prevent="addGoods($event)"><i class="icon-add_circle"></i></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -50,6 +50,7 @@
 </script>
 <style lang="scss" rel="stylesheet/scss">
   .car-control {
+    line-height: 24px;
     .fade-enter-active,.fade-leave{
       transition: opacity 0.5s;
     }

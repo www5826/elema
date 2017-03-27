@@ -124,7 +124,6 @@
         .content-title {
           font-size: 16px;
           font-weight: bold;
-          line-height: 16px;
           padding: 2px 0 4px 0;
           .brand {
             width: 30px;
