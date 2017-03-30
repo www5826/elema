@@ -19,7 +19,7 @@
   export default{
     props: {
       food: {
-        type: Object
+        type: null
       }
     },
     created(){
