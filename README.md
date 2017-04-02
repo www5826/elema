@@ -2,6 +2,9 @@
 
 > A Vue.js project
 
+技术栈
+vue2 + vue-router + webpack + vue-resource + vue-cli
+
 ## Build Setup
 
 ``` bash
