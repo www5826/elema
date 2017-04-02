@@ -1,30 +1,33 @@
 @charset "UTF-8";
 
-@media (-webkit-max-device-pixel-ratio:1.5),(min-device-pixel-ratio:1.5){
-	.border-1px{
-		&::after{
-			-webkit-transform: scaleY(0.7);
-			transform:scaleY(0.7)
-		}
-	}
+$gray: rgb(147, 153, 159);
+$black: rgb(7, 17, 27);
+
+@media (-webkit-max-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
+  .border-1px {
+    &::after {
+      -webkit-transform: scaleY(0.7);
+      transform: scaleY(0.7)
+    }
+  }
 }
 
-@media (-webkit-min-device-pixel-ratio:2),(max-device-pixel-ratio:2){
-	.border-1px{
-		&::after{
-			-webkit-transform: scaleY(0.5);
-			transform:scaleY(0.5)
-		}
-	}
+@media (-webkit-min-device-pixel-ratio: 2), (max-device-pixel-ratio: 2) {
+  .border-1px {
+    &::after {
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5)
+    }
+  }
 }
 
-.clear-fix{
+.clear-fix {
   display: inline-block;
-  &:after{
+  &::after {
     content: '';
     display: block;
+    height: 0;
     clear: both;
-    height:0;
     visibility: hidden;
   }
 }

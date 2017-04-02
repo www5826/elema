@@ -18,10 +18,10 @@
             <p class="situation">月售{{food.sellCount}}&nbsp;&nbsp;好评率{{food.rating}}%</p>
             <div class="price">
               <span class="new-price">￥{{food.price}}</span>
-              <span v-show="food.oldPrice != ''" class="old-price"><del>{{food.oldPrice}}</del></span>
+              <span v-show="food.oldPrice = ''" class="old-price"><del>{{food.oldPrice}}</del></span>
             </div>
           </div>
-          <div class="add-car" @click="addFirst" v-show="!food.count || food.count == 0">
+          <div class="add-car" @click="addFirst" v-show="!food.count || food.count === 0">
             <span>加入购物车</span>
           </div>
           <div class="car-wrapper" v-show="food.count && food.count >= 1">
@@ -45,7 +45,7 @@
           <li v-if="needShow(rating)"  class="comment-item border-1px" v-for="rating in food.ratings">
             <div class="comment-time">{{rating.rateTime}}</div>
             <div class="comment-content-wrapper">
-              <i :class="{'icon-thumb_up':rating.rateType == 0,'icon-thumb_down':rating.rateType == 1}"></i>
+              <i :class="{'icon-thumb_up':rating.rateType === 0,'icon-thumb_down':rating.rateType === 1}"></i>
               <span class="comment-content">{{rating.text}}</span>
             </div>
             <div class="comment-user">
@@ -54,7 +54,7 @@
             </div>
           </li>
         </ul>
-        <div class="no-content" v-show="food.ratings.length === 0">暂无评论内容</div>
+        <div class="no-content" v-show="!food.ratings || food.ratings.length === 0">暂无评论内容</div>
       </div>
     </div>
     </div>
@@ -89,16 +89,15 @@
       show(){
         this.showFlag = true;
         this.selectedType = ALL;
-        if(!this.scroll){
-          this.$nextTick(() => {
+        this.$nextTick(() => {
+          if(!this.scroll){
             this.scroll = new BScroll(this.$refs.food, {
               click: true
             })
-          })
-        }else{
-          this.scroll.refresh();
-        }
-        
+          }else{
+            this.scroll.refresh();
+          }
+        })
       },
       addFirst(){
         if (!this.food.count) {
@@ -124,12 +123,12 @@
         if(this.onlyComment && !rating.text){
           return false;
         }
-        if(this.food.ratings.length == 0){
-          return false; 
-        }else if(this.selectedType == ALL){
+        if(this.food.ratings.length === 0){
+          return false;
+        }else if(this.selectedType === ALL){
           return true;
         }else{
-          return rating.rateType == this.selectedType;
+          return rating.rateType === this.selectedType;
         }
       }
     },
@@ -201,7 +200,7 @@
       width: 100%;
       height: 100%;
     }
-  } 
+  }
   .food-info {
     position: relative;
     .right {
@@ -331,6 +330,10 @@
           border-radius:50%;
         }
       }
+    }
+    .no-content{
+      color: rgb(147,153,159);
+      padding: 12px 0;
     }
   }
 }

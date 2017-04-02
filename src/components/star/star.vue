@@ -84,7 +84,7 @@
        .star-item {
          width:  18px;
          height: 18px;
-         margin-right: 16px;
+         margin-right: 8px;
          &:last-child{
            margin-right: 0;
          }

@@ -17,7 +17,7 @@
       </div>
       <div v-if="seller.supports" class="btn" @click="detailShow()">
         <span class="privilege-num">{{seller.supports.length}}个</span>
-        <i class="icon-arrow_right"></i>
+        <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
     <!--公告-->
@@ -179,8 +179,6 @@
       }
       .btn {
         height: 12px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
         border-radius: 10px;
         display: inline-block;
         background: rgba(0, 0, 0, 0.2);
@@ -194,6 +192,9 @@
           line-height: 12px;
           font-weight: 200;
           font-size: 10px;
+        }
+        .icon-arrow_right{
+
         }
       }
     }
@@ -215,11 +216,12 @@
       .bulletin-content {
         padding: 0 0 0 4px;
         font-size: 10px;
+        vertical-align:top;
       }
       .bulletin-go {
         display: inline-block;
         width: 12px;
-        height: 12px;
+        height: 12px; 
       }
     }
     .detail {

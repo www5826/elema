@@ -27,11 +27,11 @@
               </div>
               <div class="right">
                 <p class="name">{{item.name}}</p>
-                <p v-show="item.description != ''" class="des">{{item.description}}</p>
+                <p v-show="item.description !== ''" class="des">{{item.description}}</p>
                 <p class="situation">月售{{item.sellCount}}&nbsp;&nbsp;好评率{{item.rating}}%</p>
                 <div class="price">
                   <span class="new-price">￥{{item.price}}</span>
-                  <span v-show="item.oldPrice != ''" class="old-price"><del>￥24</del></span>
+                  <span v-show="item.oldPrice !== ''" class="old-price"><del>￥24</del></span>
                 </div>
               </div>
               <div class="car-control-wrapper">
@@ -53,9 +53,7 @@
   import shopCar from './../shopcar/shopcar.vue';
   import carControl from './../carControl/carControl.vue';
   import food from '../food/food.vue';
-
-
-  const ERR_OK = '0';//成功状态
+  const ERR_OK = 0;//成功状态
 
   export default {
     props: {
@@ -77,7 +75,7 @@
       this.privilege = ['decrease', 'discount', 'guarantee', 'invoice', 'special'];
       this.$http.get('/api/goods').then(res => {
         let result = res.body;
-        if (result.errno == ERR_OK) {
+        if (result.errno === ERR_OK) {
           this.goods = result.data;
           this.$nextTick(() => {
             this._initBScroll();
