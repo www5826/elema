@@ -1,9 +1,13 @@
-# 点餐系统
+## 点餐系统
 
 > A Vue.js project
 
 技术栈
 vue2 + vue-router + webpack + vue-resource + vue-cli
+
+## 界面展示
+
+  <img src="https://raw.githubusercontent.com/www5826/order-system/master/images/pic1.png" width = "300" height = "500" alt="图片名称" />     <img src="https://raw.githubusercontent.com/www5826/order-system/master/images/pic2.png" width = "300" height = "500" alt="图片名称" />     <img src="https://raw.githubusercontent.com/www5826/order-system/master/images/pic3.png" width = "300" height = "500" alt="图片名称" />     <img src="https://raw.githubusercontent.com/www5826/order-system/master/images/pic4.png" width = "300" height = "500" alt="图片名称" />     <img src="https://raw.githubusercontent.com/www5826/order-system/master/images/pic5.png" width = "300" height = "500" alt="图片名称" />
 
 ## Build Setup
 
